@@ -1,16 +1,16 @@
-[data,fs]=audioread('E:\MATLAB\MATLAB\bin\wenjian\oscillofun\oscillofun-wave.wav'); %µ¼ÈëÒôÆµ
+[data,fs]=audioread('oscillofun-wave.wav'); %å¯¼å…¥éŸ³é¢‘
 
 high=size(data);
-high(2)=[];     %ÇóÒôÆµÊı¾İÁ¿³¤¶È
-FBS=30;         %ÉèÖÃÖ¡ÂÊ
-ans_=0;         %ÆğÊ¼Öµ
-count=0;        %Ö¡Êı
+high(2)=[];     %æ±‚éŸ³é¢‘æ•°æ®é‡é•¿åº¦
+FBS=30;         %è®¾ç½®å¸§ç‡
+ans_=0;         %èµ·å§‹å€¼
+count=0;        %å¸§æ•°
 d=0.7;
-d_=[-d,d,-d,d]; %ÏÔÊ¾·¶Î§
-clear y;        %Ô¤ÏÈÇå³ıyÒÔ·À³åÍ»£¨ÓĞÃ»ÓĞÓÃÔÛÒ²²»ÖªµÀÀ´×Å£©
-K=[-1,-1];       %·½ÏòÏµÊıoscillofun->[-1,0],Badapple->[-1£¬-1]£¨Ã²ËÆ£©
+d_=[-d,d,-d,d]; %æ˜¾ç¤ºèŒƒå›´
+clear y;        %é¢„å…ˆæ¸…é™¤yä»¥é˜²å†²çªï¼ˆæœ‰æ²¡æœ‰ç”¨å’±ä¹Ÿä¸çŸ¥é“æ¥ç€ï¼‰
+K=[-1,-1];       %æ–¹å‘ç³»æ•°oscillofun->[-1,0],Badapple->[-1ï¼Œ-1]ï¼ˆè²Œä¼¼ï¼‰
 data(:,1)=K(1)*data(:,1);
-data(:,2)=K(2)*data(:,2);   %¸ù¾İK¸ÄÒ»ÏÂ·½Ïò
+data(:,2)=K(2)*data(:,2);   %æ ¹æ®Kæ”¹ä¸€ä¸‹æ–¹å‘
 while (ans_<high)
     for n=1:fs/FBS
         y(n,:)=data(n+ans_,:);
@@ -21,9 +21,10 @@ while (ans_<high)
     axis(d_);
     title('Oscillofun');
     ans_=ans_+n;
-    fprintf('%g%%\n',ans_/high*100);    %Êä³öÍê³ÉÂÊ
+    fprintf('%g%%\n',ans_/high*100);    %è¾“å‡ºå®Œæˆç‡
 %     print(gcf,'-dpng',['E:\MATLAB\MATLAB\bin\wenjian\oscillofun\jpg\',num2str(count),'.jpg']);
-    %Êä³öjpgÎÄ¼ş£¨¸ù¾İĞèÒª¿ÉÈ¡Ïû×¢ÊÍ£©
+    %è¾“å‡ºjpgæ–‡ä»¶ï¼ˆæ ¹æ®éœ€è¦å¯å–æ¶ˆæ³¨é‡Šï¼‰
     count=count+1;
-    pause(0.01)        %Í£¶Ù
+    pause(0.01)        %åœé¡¿
+
 end
